@@ -6,8 +6,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
 import com.dsantano.ejercicio_fragmentlist.dummy.DummyContent.DummyItem;
 
 import java.util.List;
@@ -38,8 +42,19 @@ public class MyYoutubeItemRecyclerViewAdapter extends RecyclerView.Adapter<MyYou
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.txtAuthor.setText(mValues.get(position).getAuthor());
-        holder.mContentView.setText(mValues.get(position).getAuthor());
+        holder.txtAuthor.setText(holder.mItem.getAuthor());
+        holder.txtViews.setText(String.valueOf(holder.mItem.getViews()));
+        holder.txtTittle.setText(holder.mItem.getTittle());
+        holder.txtDuration.setText(holder.mItem.getDuration());
+        Glide
+                .with(ctx)
+                .load(holder.mItem.getVidUrl())
+                .into(holder.ivPhoto);
+        Glide
+                .with(ctx)
+                .load(holder.mItem.getAuthorUrl())
+                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+                .into(holder.ivAuthor);
     }
 
     @Override
@@ -50,14 +65,22 @@ public class MyYoutubeItemRecyclerViewAdapter extends RecyclerView.Adapter<MyYou
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView txtAuthor;
-        public final TextView mContentView;
+        public final TextView txtViews;
+        public final TextView txtTittle;
+        public final ImageView ivAuthor;
+        public final ImageView ivPhoto;
+        public final TextView txtDuration;
         public YoutubeItem mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            txtAuthor = view.findViewById(R.id.texture_view);
-            mContentView = view.findViewById(R.id.content);
+            txtAuthor = view.findViewById(R.id.textViewAuthor);
+            txtViews = view.findViewById(R.id.textViewViews);
+            txtTittle = view.findViewById(R.id.textViewTitle);
+            ivAuthor = view.findViewById(R.id.imageViewAuthor);
+            ivPhoto = view.findViewById(R.id.imageViewPhoto);
+            txtDuration = view.findViewById(R.id.textViewDuration);
         }
 
     }
