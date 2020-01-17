@@ -53,7 +53,6 @@ public class YoutubeItemFragmentList extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_youtubeitem_list, container, false);
 
-        // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
@@ -66,7 +65,10 @@ public class YoutubeItemFragmentList extends Fragment {
 
             }
             youtubeItemList = new ArrayList<YoutubeItem>();
-            youtubeItemList.add(new YoutubeItem());
+            youtubeItemList.add(new YoutubeItem("https://pbs.twimg.com/media/D5Gg3QNWwAEsCaJ.jpg","https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-thumbnail/s3/052014/goikogrill_logo.png?itok=q8fypMXJ", "Preview King Kong 250gr", "Goiko Grill YT", "10:45",6351684));
+            youtubeItemList.add(new YoutubeItem("https://cdn02.nintendo-europe.com/media/images/10_share_images/support_9/H2x1_NintendoWii_support_no_logo_image800w.jpg","https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Nintendo_Logo_2017.png/800px-Nintendo_Logo_2017.png", "Preview Wii Hcked Miguel Campos", "Nintendo YT", "55:23",354361));
+            youtubeItemList.add(new YoutubeItem("https://maslinux.es/wp-content/uploads/2018/10/linux-vs-windows-featured.jpg", "https://conceptodefinicion.de/wp-content/uploads/2014/10/persona.jpg", "¿Por que es mejor Windows que Linux?", "Windows Lover YT", "30:13",9623));
+            youtubeItemList.add(new YoutubeItem("https://quierocuidarme.dkvsalud.es/sites/default/files/styles/vivelasalud_ficha_825x464/public/imagen/2017-10/shutterstock_367741853_0.jpg?itok=0vIQkXY0", "https://www.economiadehoy.es/fotos/8/59785_sanitaslogo.jpg", "Gonzalo y la Fatiga", "Sanitas YT", "15:53", 354891));
 
             adapter = new MyYoutubeItemRecyclerViewAdapter(
                     context,
