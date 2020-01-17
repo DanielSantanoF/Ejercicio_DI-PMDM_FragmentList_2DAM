@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name='Ejercicio_DI_PMDM_RecycleViewItemList_2DAM'
