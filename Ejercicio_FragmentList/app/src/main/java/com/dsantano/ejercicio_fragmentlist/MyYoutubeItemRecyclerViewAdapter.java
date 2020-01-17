@@ -31,14 +31,14 @@ public class MyYoutubeItemRecyclerViewAdapter extends RecyclerView.Adapter<MyYou
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_youtubeitem, parent, false);
+                .inflate(R.layout.fragment_youtube_items, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).getTittle());
+        holder.txtAuthor.setText(mValues.get(position).getAuthor());
         holder.mContentView.setText(mValues.get(position).getAuthor());
     }
 
@@ -49,14 +49,14 @@ public class MyYoutubeItemRecyclerViewAdapter extends RecyclerView.Adapter<MyYou
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
+        public final TextView txtAuthor;
         public final TextView mContentView;
         public YoutubeItem mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = view.findViewById(R.id.item_number);
+            txtAuthor = view.findViewById(R.id.texture_view);
             mContentView = view.findViewById(R.id.content);
         }
 
