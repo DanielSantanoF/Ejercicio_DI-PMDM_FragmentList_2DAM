@@ -43,7 +43,7 @@ public class MyYoutubeItemRecyclerViewAdapter extends RecyclerView.Adapter<MyYou
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.txtAuthor.setText(holder.mItem.getAuthor());
-        holder.txtViews.setText(String.valueOf(holder.mItem.getViews()));
+        holder.txtViews.setText(String.valueOf(holder.mItem.getViews()) + "views");
         holder.txtTittle.setText(holder.mItem.getTittle());
         holder.txtDuration.setText(holder.mItem.getDuration());
         Glide
