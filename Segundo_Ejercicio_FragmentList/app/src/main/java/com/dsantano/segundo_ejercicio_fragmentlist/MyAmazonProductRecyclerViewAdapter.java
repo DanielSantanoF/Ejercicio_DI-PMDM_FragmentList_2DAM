@@ -2,29 +2,32 @@ package com.dsantano.segundo_ejercicio_fragmentlist;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.dsantano.segundo_ejercicio_fragmentlist.AmazonProductFragmentList.OnListFragmentInteractionListener;
 import com.dsantano.segundo_ejercicio_fragmentlist.dummy.DummyContent.DummyItem;
+import com.dsantano.segundo_ejercicio_fragmentlist.models.AmazonProduct;
 
 import java.util.List;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
+ * specified {@link com.dsantano.segundo_ejercicio_fragmentlist.models.IAmazonProductListener}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class MyAmazonProductRecyclerViewAdapter extends RecyclerView.Adapter<MyAmazonProductRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
-    private final OnListFragmentInteractionListener mListener;
+    private Context ctx;
+    private int layoutPlantilla;
+    private List<AmazonProduct> mValues;
 
-    public MyAmazonProductRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
-        mValues = items;
-        mListener = listener;
+    public MyAmazonProductRecyclerViewAdapter(Context ctx, int layoutPlantilla, List<AmazonProduct> mValues) {
+        this.ctx = ctx;
+        this.layoutPlantilla = layoutPlantilla;
+        this.mValues = mValues;
     }
 
     @Override
@@ -40,16 +43,6 @@ public class MyAmazonProductRecyclerViewAdapter extends RecyclerView.Adapter<MyA
         holder.mIdView.setText(mValues.get(position).id);
         holder.mContentView.setText(mValues.get(position).content);
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
-                }
-            }
-        });
     }
 
     @Override
@@ -61,18 +54,13 @@ public class MyAmazonProductRecyclerViewAdapter extends RecyclerView.Adapter<MyA
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public DummyItem mItem;
+        public AmazonProduct mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
             mIdView = (TextView) view.findViewById(R.id.item_number);
             mContentView = (TextView) view.findViewById(R.id.content);
-        }
-
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
         }
     }
 }

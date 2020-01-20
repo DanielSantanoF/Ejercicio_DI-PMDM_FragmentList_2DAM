@@ -14,21 +14,24 @@ import android.view.ViewGroup;
 
 import com.dsantano.segundo_ejercicio_fragmentlist.dummy.DummyContent;
 import com.dsantano.segundo_ejercicio_fragmentlist.dummy.DummyContent.DummyItem;
+import com.dsantano.segundo_ejercicio_fragmentlist.models.AmazonProduct;
+import com.dsantano.segundo_ejercicio_fragmentlist.models.IAmazonProductListener;
 
 import java.util.List;
 
 /**
  * A fragment representing a list of Items.
  * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
+ * Activities containing this fragment MUST implement the {@link IAmazonProductListener}
  * interface.
  */
 public class AmazonProductFragmentList extends Fragment {
 
     // TODO: Customize parameters
     private int mColumnCount = 1;
+    private List<AmazonProduct> listData;
 
-    private OnListFragmentInteractionListener mListener;
+    private IAmazonProductListener mListener;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -57,7 +60,12 @@ public class AmazonProductFragmentList extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyAmazonProductRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+
+
+            MyAmazonProductRecyclerViewAdapter adapter = new MyAmazonProductRecyclerViewAdapter(context,
+                    R.layout.fragment_amazon_item, listData);
+
+            recyclerView.setAdapter(adapter);
         }
         
         return view;
@@ -67,8 +75,8 @@ public class AmazonProductFragmentList extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnListFragmentInteractionListener) {
-            mListener = (OnListFragmentInteractionListener) context;
+        if (context instanceof IAmazonProductListener) {
+            mListener = (IAmazonProductListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnListFragmentInteractionListener");
@@ -81,18 +89,4 @@ public class AmazonProductFragmentList extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
-    }
 }
