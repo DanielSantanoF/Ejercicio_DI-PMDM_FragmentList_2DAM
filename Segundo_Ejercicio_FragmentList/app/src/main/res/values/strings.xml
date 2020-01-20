@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Segundo_Ejercicio_FragmentList</string>
+    <string name="text_choice">Choice</string>
+    <string name="text_amazons">Amazon\'s</string>
+    <string name="text_de_amazon">de Amazon</string>
+    <string name="text_recibelo">Recibelo el lunes, 27 enero</string>
+    <string name="text_envio_gratis">Envío GRATIS</string>
+    <string name="text_ver_otras_variantes">Ver otras variantes</string>
+    <string name="text_envio_gratis_disponible">disponible</string>
+    <string name="text_prime">prime</string>
 </resources>
