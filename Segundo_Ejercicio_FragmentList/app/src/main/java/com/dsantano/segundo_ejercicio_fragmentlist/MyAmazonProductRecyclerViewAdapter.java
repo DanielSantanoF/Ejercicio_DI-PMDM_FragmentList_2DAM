@@ -6,8 +6,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.dsantano.segundo_ejercicio_fragmentlist.dummy.DummyContent.DummyItem;
 import com.dsantano.segundo_ejercicio_fragmentlist.models.AmazonProduct;
 
@@ -33,16 +36,32 @@ public class MyAmazonProductRecyclerViewAdapter extends RecyclerView.Adapter<MyA
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_amazonproduct, parent, false);
+                .inflate(R.layout.fragment_amazon_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        String price = "EUR " + String.valueOf(holder.mItem.getPrice());
+        String votes = "(" + String.valueOf(holder.mItem.getVotes() + ")");
+        holder.tvtTitle.setText(holder.mItem.getTitle());
+        holder.tvtPrice.setText(price);
+        holder.rbRate.setRating(holder.mItem.getRate());
+        holder.tvtVotes.setText(votes);
 
+        if(holder.mItem.isPrime()) {
+            holder.ivTick.setVisibility(View.VISIBLE);
+        } else {
+            holder.ivTick.setVisibility(View.INVISIBLE);
+            holder.tvtPrime.setVisibility(View.INVISIBLE);
+        }
+
+        if(!holder.mItem.isFree_shipping()) {
+            holder.tvtShipping.setText("No disponible");
+        }
+
+        Glide.with(ctx).load(holder.mItem.getUrl()).into(holder.ivPhoto);
     }
 
     @Override
@@ -52,14 +71,30 @@ public class MyAmazonProductRecyclerViewAdapter extends RecyclerView.Adapter<MyA
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
+        public final ImageView ivPhoto;
+        public final TextView tvtTitle;
+        public final TextView tvtPrice;
+        public final ImageView ivTick;
+        public final TextView tvtPrime;
+        public final TextView tvtDate;
+        public final TextView tvtShipping;
+        public final RatingBar rbRate;
+        public final TextView tvtVotes;
         public final TextView mContentView;
         public AmazonProduct mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
+            ivPhoto = view.findViewById(R.id.imageViewProduct);
+            tvtTitle = view.findViewById(R.id.textViewProductName);
+            tvtPrice = view.findViewById(R.id.textViewPrecio);
+            ivTick = view.findViewById(R.id.imageView2);
+            tvtPrime = view.findViewById(R.id.textViewPrime);
+            tvtDate = view.findViewById(R.id.textViewRecibirlo);
+            tvtShipping = view.findViewById(R.id.textViewDisponible);
+            rbRate = view.findViewById(R.id.ratingBar);
+            tvtVotes = view.findViewById(R.id.textViewVotosRating);
             mContentView = (TextView) view.findViewById(R.id.content);
         }
     }

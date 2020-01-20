@@ -15,5 +15,6 @@ public class AmazonProduct {
     private boolean prime;
     private String date;
     private boolean free_shipping;
+    private int votes;
     private float rate;
 }

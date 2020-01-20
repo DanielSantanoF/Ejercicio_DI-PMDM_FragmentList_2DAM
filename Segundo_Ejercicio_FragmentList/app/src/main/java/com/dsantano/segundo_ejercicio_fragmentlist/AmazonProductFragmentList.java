@@ -17,6 +17,7 @@ import com.dsantano.segundo_ejercicio_fragmentlist.dummy.DummyContent.DummyItem;
 import com.dsantano.segundo_ejercicio_fragmentlist.models.AmazonProduct;
 import com.dsantano.segundo_ejercicio_fragmentlist.models.IAmazonProductListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -60,6 +61,11 @@ public class AmazonProductFragmentList extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
+            listData = new ArrayList<AmazonProduct>();
+            listData.add(new AmazonProduct("Sony PlayStation - Consola Classic + 2 mandos", "https://images-na.ssl-images-amazon.com/images/I/71mokVmeoTL._SL1500_.jpg", 39.80, true, "jueves, 30 enero", true, 205, 4f));
+            listData.add(new AmazonProduct("Dragon Ball Z: Kakarot", "https://images-na.ssl-images-amazon.com/images/I/812S8JMyKdL._SL1500_.jpg", 59.90, false, "miércoles, 5 febrero", false, 200, 5f));
+            listData.add(new AmazonProduct("Apple iMac - Ordenador de 21,5 (Procesador Intel Core i5 de doble núcleo a 2,3 GHz)", "https://images-na.ssl-images-amazon.com/images/I/51WqYDg2pSL._SL1024_.jpg", 1159.90, true, "lunes, 3 febrero", true, 40, 2f));
+            listData.add(new AmazonProduct("Sterkowski Peaky Blinders - Gorra de Harris Tweed", "https://images-na.ssl-images-amazon.com/images/I/51TSH9YXlyL.jpg", 64.00, true, "lunes, 3 febrero", true, 35, 3f));
 
 
             MyAmazonProductRecyclerViewAdapter adapter = new MyAmazonProductRecyclerViewAdapter(context,

@@ -19,20 +19,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:background="@android:color/black"
         android:text="@string/text_amazons"
+        android:textColor="@android:color/white"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageViewProduct"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewProductName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
         android:textColor="@android:color/black"
         android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toEndOf="@+id/imageViewProduct"
         app:layout_constraintTop_toBottomOf="@+id/textViewAmazonChoicePartOne" />
 
@@ -40,6 +43,7 @@
         android:id="@+id/textViewAmazonChoicePartTwo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@android:color/black"
         android:text="@string/text_choice"
         android:textColor="@android:color/holo_orange_dark"
         android:textStyle="bold"
@@ -151,4 +155,11 @@
         app:layout_constraintBottom_toBottomOf="@+id/textViewPrecio"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/textViewPrecio" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="381dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
